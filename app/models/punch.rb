@@ -4,7 +4,7 @@ class Punch < ActiveRecord::Base
 
   before_validation :set_defaults
   validates :punchable_id, :punchable_type, :starts_at, :ends_at, :average_time, :hits, :presence => true
-
+  # for ruby 2.x.x support
   default_scope -> { order 'punches.average_time DESC' }
   scope :combos, -> { where 'punches.hits > 1' }
   scope :jabs, -> { where hits: 1 }
